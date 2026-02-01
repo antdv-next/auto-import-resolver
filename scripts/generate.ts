@@ -4,11 +4,19 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const srcDir = path.resolve(__dirname, '../src')
+const antdvNextRoot = process.env.ANTDV_NEXT_ROOT
+  ? path.resolve(process.env.ANTDV_NEXT_ROOT)
+  : path.resolve(__dirname, '../../antdv-next')
+
+function warnMissing(filePath: string) {
+  const hint = process.env.ANTDV_NEXT_ROOT ? '' : ' (set ANTDV_NEXT_ROOT to packages/antdv-next)'
+  console.warn(`${filePath} not found${hint}`)
+}
 
 function generateComponents() {
-  const globalDtsFilePath = path.resolve(__dirname, '../../antdv-next/global.d.ts')
+  const globalDtsFilePath = path.resolve(antdvNextRoot, 'global.d.ts')
   if (!fs.existsSync(globalDtsFilePath)) {
-    console.warn(`${globalDtsFilePath} not found`)
+    warnMissing(globalDtsFilePath)
     return
   }
 
@@ -33,9 +41,9 @@ function generateComponents() {
 }
 
 function generateIcons() {
-  const iconDir = path.resolve(__dirname, '../../icons/src/icons')
+  const iconDir = path.resolve(antdvNextRoot, '../icons/src/icons')
   if (!fs.existsSync(iconDir)) {
-    console.warn(`${iconDir} not found`)
+    warnMissing(iconDir)
     return
   }
 
