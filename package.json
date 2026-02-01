@@ -30,7 +30,7 @@
     "build": "tsdown",
     "test": "vitest run",
     "prepublish": "pnpm build",
-    "bump": "bumpp --commit \"chore(release): @antdv-next/auto-import-resolver %s\" --push --tag \"@antdv-next/auto-import-resolver@%s\""
+    "bump": "bumpp"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.2.0",
