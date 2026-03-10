@@ -107,7 +107,7 @@ export default {
   ACarousel: 'Carousel',
   ACascader: 'Cascader',
   ATable: 'Table',
-  ATableColumn: 'Column',
+  ATableColumn: 'TableColumn',
   ATableSummary: 'TableSummary',
   ATableSummaryRow: 'TableSummaryRow',
   ATableSummaryCell: 'TableSummaryCell',
@@ -117,5 +117,5 @@ export default {
   ATimePicker: 'TimePicker',
   ATimeRangePicker: 'TimeRangePicker',
   AAutoComplete: 'AutoComplete',
-  AAutoCompleteOption: 'Option',
+  AAutoCompleteOption: 'AutoCompleteOption',
 } as Record<string, string>
