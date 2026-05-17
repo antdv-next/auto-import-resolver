@@ -14,6 +14,7 @@ export default {
   ARow: 'Row',
   ABadge: 'Badge',
   ABadgeRibbon: 'BadgeRibbon',
+  ABorderBeam: 'BorderBeam',
   ATag: 'Tag',
   ACheckableTag: 'CheckableTag',
   ACheckableTagGroup: 'CheckableTagGroup',
