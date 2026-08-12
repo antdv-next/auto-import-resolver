@@ -23,6 +23,7 @@ export default {
   ALayoutFooter: 'LayoutFooter',
   ALayoutContent: 'LayoutContent',
   ALayoutSider: 'LayoutSider',
+  AListy: 'Listy',
   AEmpty: 'Empty',
   AResult: 'Result',
   ASpin: 'Spin',
