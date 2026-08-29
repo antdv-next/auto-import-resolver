@@ -36,7 +36,7 @@ import Components from 'unplugin-vue-components/vite'
 export default defineConfig({
   plugins: [
     Components({
-      resolvers: [AntdvNextResolver()],
+      resolvers: [AntdvNextResolver({ pro: true })],
     }),
   ],
 })
@@ -125,6 +125,36 @@ build({
 ```
 
 ## 选项
+
+### pro
+
+自动引入 [@antdv-next/pro](https://github.com/antdv-next/antdv-next-pro) Pro 组件，例如 `a-scrollbar` 和 `ap-config-provider`。
+
+- **类型：** `boolean | { include?: FilterPattern, exclude?: FilterPattern }`
+- **默认值：** `false`
+- **依赖：** `@antdv-next/pro`
+- **示例：**
+
+```ts
+Components({
+  resolvers: [AntdvNextResolver({ pro: true })],
+})
+```
+
+如果只需要自动引入指定的 Pro 组件，可以使用 `include`。`exclude` 的优先级高于 `include`，组件名可使用 `Scrollbar` 或 `AScrollbar`。
+
+```ts
+Components({
+  resolvers: [
+    AntdvNextResolver({
+      pro: {
+        include: ['Scrollbar'],
+        exclude: ['AScrollbar'],
+      },
+    }),
+  ],
+})
+```
 
 ### resolveIcons
 
