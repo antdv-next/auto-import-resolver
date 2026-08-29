@@ -1,8 +1,17 @@
 import type { ComponentResolver } from 'unplugin-vue-components'
 import componentMap from './components'
 import icons from './icons'
+import proComponentMap from './pro-components'
 
 export interface AntdvNextResolverOptions {
+  /**
+   * Automatically import [@antdv-next/pro](https://github.com/antdv-next/antdv-next-pro) components.
+   *
+   * requires package `@antdv-next/pro`
+   *
+   * @default false
+   */
+  pro?: boolean | AntdvNextProResolverOptions
   /**
    * Set the components or icons that do not require automatic import.
    *
@@ -19,25 +28,36 @@ export interface AntdvNextResolverOptions {
   resolveIcons?: boolean
 }
 
+export interface AntdvNextProResolverOptions {
+  /** Only resolve the listed Pro components. */
+  include?: FilterPattern
+  /** Do not resolve the listed Pro components. */
+  exclude?: FilterPattern
+}
+
 export type FilterPattern = ReadonlyArray<string | RegExp> | string | RegExp | null
 
-function isExclude(name: string, exclude?: FilterPattern): boolean {
-  if (!exclude)
+function matchesFilter(name: string, filter?: FilterPattern): boolean {
+  if (!filter)
     return false
 
-  if (typeof exclude === 'string')
-    return name === exclude
+  if (typeof filter === 'string')
+    return name === filter
 
-  if (exclude instanceof RegExp)
-    return !!name.match(exclude)
+  if (filter instanceof RegExp)
+    return !!name.match(filter)
 
-  if (Array.isArray(exclude)) {
-    for (const item of exclude) {
+  if (Array.isArray(filter)) {
+    for (const item of filter) {
       if (name === item || name.match(item))
         return true
     }
   }
   return false
+}
+
+function isExclude(name: string, exclude?: FilterPattern): boolean {
+  return matchesFilter(name, exclude)
 }
 
 /**
@@ -57,6 +77,30 @@ export function AntdvNextResolver(options?: AntdvNextResolverOptions): Component
         return {
           name,
           from: '@antdv-next/icons',
+        }
+      }
+
+      if (opts.pro) {
+        const proImportName = proComponentMap[name]
+        if (proImportName) {
+          const proOptions = typeof opts.pro === 'object' ? opts.pro : undefined
+          const included = !proOptions?.include
+            || matchesFilter(name, proOptions.include)
+            || matchesFilter(proImportName, proOptions.include)
+          const globallyExcluded = isExclude(proImportName, opts.exclude)
+          const proExcluded = isExclude(name, proOptions?.exclude)
+            || isExclude(proImportName, proOptions?.exclude)
+
+          if (globallyExcluded) {
+            return
+          }
+
+          if (included && !proExcluded) {
+            return {
+              name: proImportName,
+              from: '@antdv-next/pro',
+            }
+          }
         }
       }
 

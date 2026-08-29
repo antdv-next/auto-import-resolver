@@ -126,6 +126,36 @@ build({
 
 ## Options
 
+### pro
+
+Automatically import [@antdv-next/pro](https://github.com/antdv-next/antdv-next-pro) components such as `a-scrollbar` and `ap-config-provider`.
+
+- **Type:** `boolean | { include?: FilterPattern, exclude?: FilterPattern }`
+- **Default:** `false`
+- **Requires:** `@antdv-next/pro`
+- **Example:**
+
+```ts
+Components({
+  resolvers: [AntdvNextResolver({ pro: true })],
+})
+```
+
+To limit automatic imports to selected Pro components, use `include`. `exclude` takes precedence over `include`, and component names may be written as either `Scrollbar` or `AScrollbar`.
+
+```ts
+Components({
+  resolvers: [
+    AntdvNextResolver({
+      pro: {
+        include: ['Scrollbar'],
+        exclude: ['AScrollbar'],
+      },
+    }),
+  ],
+})
+```
+
 ### resolveIcons
 
 Automatically import [@antdv-next/icons](https://www.antdv-next.com/components/icon-cn) icons library.
