@@ -16,7 +16,8 @@ export default defineConfig({
     Components({
       resolvers: [
         AntdvNextResolver({
-          resolveIcons: true
+          resolveIcons: true,
+          pro: true
         })
       ]
     }),

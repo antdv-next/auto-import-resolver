@@ -14,21 +14,22 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
-    "@antdv-next/icons": "^1.0.3",
-    "antdv-next": "^1.1.0",
-    "vue": "^3.5.29"
+    "@antdv-next/icons": "latest",
+    "@antdv-next/pro": "latest",
+    "antdv-next": "latest",
+    "vue": "latest"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.11.0",
-    "@vitejs/plugin-vue": "^6.0.4",
-    "@vue/tsconfig": "^0.8.1",
+    "@vitejs/plugin-vue": "latest",
+    "@vue/tsconfig": "latest",
     "npm-run-all2": "^8.0.4",
-    "rollup-plugin-visualizer": "^7.0.0",
+    "rollup-plugin-visualizer": "latest",
     "typescript": "~5.9.3",
-    "unplugin-vue-components": "^31.0.0",
-    "vite": "beta",
-    "vite-plugin-vue-devtools": "^8.0.6",
-    "vue-tsc": "^3.2.5"
+    "unplugin-vue-components": "latest",
+    "vite": "latest",
+    "vite-plugin-vue-devtools": "latest",
+    "vue-tsc": "latest"
   }
 }

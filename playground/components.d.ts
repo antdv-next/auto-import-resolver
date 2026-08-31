@@ -11,9 +11,13 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AFlex: typeof import('antdv-next')['Flex']
     AImage: typeof import('antdv-next')['Image']
     AImagePreviewGroup: typeof import('antdv-next')['ImagePreviewGroup']
+    AScrollbar: typeof import('@antdv-next/pro')['Scrollbar']
     AStyleProvider: typeof import('antdv-next')['StyleProvider']
+    ATag: typeof import('antdv-next')['Tag']
+    ATypographyTitle: typeof import('antdv-next')['TypographyTitle']
     StepForwardOutlined: typeof import('@antdv-next/icons')['StepForwardOutlined']
   }
 }
